@@ -7,7 +7,7 @@ Configurado para Outlook / Office365
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from dotenv import load_dotenv
-import os, smtplib, ssl
+import os, smtplib, ssl, threading
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from datetime import datetime
@@ -36,12 +36,21 @@ contacts, newsletters, franquias_list, atacados = [], [], [], []
 #   ENVIO DE E-MAIL — Outlook / Office365
 # ════════════════════════════════════════
 def send_email(subject: str, html: str, to: str = None) -> bool:
-    """Envia e-mail via Microsoft 365 — tenta múltiplos métodos."""
+    """Dispara envio de e-mail em thread separada (não bloqueia o worker)."""
     dest = to or EMAIL_TO
-
     if not SMTP_USER or not SMTP_PASS:
-        print(f"[DEV — sem SMTP configurado] Para: {dest} | Assunto: {subject}")
+        print(f"[DEV] E-mail não enviado (sem SMTP): {subject}")
         return True
+    # Envia em background para não bloquear o worker do gunicorn
+    t = threading.Thread(target=_send_email_sync, args=(subject, html, dest), daemon=True)
+    t.start()
+    return True  # retorna True imediatamente — não bloqueia
+
+
+def _send_email_sync(subject: str, html: str, dest: str) -> bool:
+    """Envio real em thread background."""
+    if not SMTP_USER or not SMTP_PASS:
+        return False
 
     msg = MIMEMultipart('alternative')
     msg['Subject'] = subject
