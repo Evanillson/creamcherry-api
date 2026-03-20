@@ -249,11 +249,23 @@ def tpl_franquia_user(d):
 </div>""")
 
 def tpl_atacado_team(d):
+    # Normalize products — handles both dict and string formats
+    raw_prods = d.get('produtos', [])
+    prods_normalized = []
+    for p in raw_prods:
+        if isinstance(p, dict):
+            prods_normalized.append({
+                'produto':    p.get('produto') or p.get('name') or str(p),
+                'quantidade': int(p.get('quantidade') or p.get('qty') or 0),
+            })
+        else:
+            prods_normalized.append({'produto': str(p), 'quantidade': 0})
+
     rows = ''.join(
-        f"<tr><td>{p.get('produto','')}</td><td style='text-align:center'>{p.get('quantidade',0)}</td></tr>"
-        for p in d.get('produtos',[])
+        f"<tr><td>{p['produto']}</td><td style='text-align:center'>{p['quantidade']} un.</td></tr>"
+        for p in prods_normalized
     )
-    total = sum(p.get('quantidade',0) for p in d.get('produtos',[]))
+    total = sum(p['quantidade'] for p in prods_normalized)
     obs_block = f'<p class="sec-title">Observações</p><div class="obs">{d["obs"]}</div>' if d.get('obs') else ''
     return _wrap(f"""
 <div class="hdr">
@@ -288,9 +300,16 @@ def tpl_atacado_team(d):
 </div>""")
 
 def tpl_atacado_user(d):
+    raw_prods2 = d.get('produtos', [])
+    prods2 = [
+        {'produto': p.get('produto') or p.get('name') or str(p),
+         'quantidade': int(p.get('quantidade') or p.get('qty') or 0)}
+        if isinstance(p, dict) else {'produto': str(p), 'quantidade': 0}
+        for p in raw_prods2
+    ]
     rows = ''.join(
-        f"<tr><td>{p.get('produto','')}</td><td style='text-align:center'>{p.get('quantidade',0)} un.</td></tr>"
-        for p in d.get('produtos',[])
+        f"<tr><td>{p['produto']}</td><td style='text-align:center'>{p['quantidade']} un.</td></tr>"
+        for p in prods2
     )
     return _wrap(f"""
 <div class="hdr">
