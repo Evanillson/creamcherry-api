@@ -63,43 +63,23 @@ def _send_email_sync(subject: str, html: str, dest: str) -> bool:
     context.check_hostname = False
     context.verify_mode    = ssl.CERT_NONE
 
-    # Método 1: STARTTLS porta 587 (padrão Office365)
-    configs = [
-        ('smtp.office365.com', 587,  'starttls'),
-        ('smtp.office365.com', 25,   'starttls'),
-        ('smtp.office365.com', 465,  'ssl'),
-        ('smtp-mail.outlook.com', 587, 'starttls'),
-    ]
-
-    for host, port, mode in configs:
-        try:
-            print(f"[SMTP] Tentando {host}:{port} ({mode})...")
-            if mode == 'ssl':
-                server = smtplib.SMTP_SSL(host, port, timeout=10, context=context)
-            else:
-                server = smtplib.SMTP(host, port, timeout=10)
-                server.ehlo()
-                server.starttls(context=context)
-                server.ehlo()
-
-            server.login(SMTP_USER, SMTP_PASS)
-            server.sendmail(EMAIL_FROM, dest, msg.as_string())
-            server.quit()
-            print(f"[EMAIL OK] {host}:{port} | Para: {dest} | {subject}")
-            return True
-
-        except smtplib.SMTPAuthenticationError as e:
-            print(f"[ERRO AUTH] {host}:{port} — {e}")
-            break  # mesma senha, não adianta tentar outros hosts
-        except Exception as e:
-            print(f"[ERRO] {host}:{port} — {type(e).__name__}: {e}")
-            continue
-
-    print("[ERRO] Todos os métodos falharam.")
-    print("       Verifique: 1) SMTP autenticado habilitado no admin.microsoft.com")
-    print("                  2) Senha de app correta")
-    print("                  3) MFA ativo na conta")
-    return False
+    try:
+        print(f"[SMTP] Enviando para {dest}...")
+        server = smtplib.SMTP('smtp.office365.com', 587, timeout=60)
+        server.ehlo()
+        server.starttls(context=context)
+        server.ehlo()
+        server.login(SMTP_USER, SMTP_PASS)
+        server.sendmail(EMAIL_FROM, dest, msg.as_string())
+        server.quit()
+        print(f"[EMAIL OK] Para: {dest} | {subject}")
+        return True
+    except smtplib.SMTPAuthenticationError as e:
+        print(f"[ERRO AUTH] {e}")
+        return False
+    except Exception as e:
+        print(f"[ERRO SMTP] {type(e).__name__}: {e}")
+        return False
 
 
 def now_fmt():
