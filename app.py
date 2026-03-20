@@ -8,6 +8,10 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from dotenv import load_dotenv
 import os, smtplib, ssl, threading
+from concurrent.futures import ThreadPoolExecutor
+
+# Pool de threads para envio de e-mail em background
+_email_pool = ThreadPoolExecutor(max_workers=4)
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from datetime import datetime
@@ -36,12 +40,14 @@ contacts, newsletters, franquias_list, atacados = [], [], [], []
 #   ENVIO DE E-MAIL — Outlook / Office365
 # ════════════════════════════════════════
 def send_email(subject: str, html: str, to: str = None) -> bool:
-    """Envia e-mail de forma síncrona — gthread worker garante não bloquear."""
+    """Dispara e-mail no pool de threads — retorna imediatamente."""
     dest = to or EMAIL_TO
     if not SMTP_USER or not SMTP_PASS:
         print(f"[DEV] E-mail não enviado (sem SMTP): {subject}")
         return True
-    return _send_email_sync(subject, html, dest)
+    # Fire-and-forget: não bloqueia a resposta HTTP
+    _email_pool.submit(_send_email_sync, subject, html, dest)
+    return True
 
 
 def _send_email_sync(subject: str, html: str, dest: str) -> bool:
