@@ -64,21 +64,33 @@ def _send_email_sync(subject: str, html: str, dest: str) -> bool:
     context.verify_mode    = ssl.CERT_NONE
 
     try:
-        print(f"[SMTP] Enviando para {dest}...")
+        print(f"[SMTP] Conectando smtp.office365.com:587...")
+        print(f"[SMTP] USER: {SMTP_USER}")
         server = smtplib.SMTP('smtp.office365.com', 587, timeout=60)
+        server.set_debuglevel(0)
         server.ehlo()
+        print(f"[SMTP] STARTTLS...")
         server.starttls(context=context)
         server.ehlo()
+        print(f"[SMTP] Login...")
         server.login(SMTP_USER, SMTP_PASS)
+        print(f"[SMTP] Enviando para {dest}...")
         server.sendmail(EMAIL_FROM, dest, msg.as_string())
         server.quit()
-        print(f"[EMAIL OK] Para: {dest} | {subject}")
+        print(f"[EMAIL OK] ✓ Para: {dest} | {subject}")
         return True
     except smtplib.SMTPAuthenticationError as e:
-        print(f"[ERRO AUTH] {e}")
+        print(f"[ERRO AUTH] Autenticação falhou: {e}")
+        print(f"[ERRO AUTH] Verifique SMTP_PASS no Render > Environment")
+        return False
+    except smtplib.SMTPConnectError as e:
+        print(f"[ERRO CONNECT] Não conectou: {e}")
+        return False
+    except smtplib.SMTPException as e:
+        print(f"[ERRO SMTP] {type(e).__name__}: {e}")
         return False
     except Exception as e:
-        print(f"[ERRO SMTP] {type(e).__name__}: {e}")
+        print(f"[ERRO GERAL] {type(e).__name__}: {e}")
         return False
 
 
