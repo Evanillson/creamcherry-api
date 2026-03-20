@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: creamcherry-api
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --workers 1 --timeout 120
+    envVars:
+      - key: SMTP_HOST
+        value: smtp.office365.com
+      - key: SMTP_PORT
+        value: 587
+      - key: SMTP_USER
+        value: comercial@creamcherry.com.br
+      - key: SMTP_PASS
+        sync: false
+      - key: EMAIL_FROM
+        value: comercial@creamcherry.com.br
+      - key: EMAIL_TO
+        value: comercial@creamcherry.com.br
+      - key: ATACADO_EMAIL
+        value: comercial@creamcherry.com.br
+      - key: SECRET_KEY
+        generateValue: true
