@@ -36,19 +36,16 @@ contacts, newsletters, franquias_list, atacados = [], [], [], []
 #   ENVIO DE E-MAIL — Outlook / Office365
 # ════════════════════════════════════════
 def send_email(subject: str, html: str, to: str = None) -> bool:
-    """Dispara envio de e-mail em thread separada (não bloqueia o worker)."""
+    """Envia e-mail de forma síncrona — gthread worker garante não bloquear."""
     dest = to or EMAIL_TO
     if not SMTP_USER or not SMTP_PASS:
         print(f"[DEV] E-mail não enviado (sem SMTP): {subject}")
         return True
-    # Envia em background para não bloquear o worker do gunicorn
-    t = threading.Thread(target=_send_email_sync, args=(subject, html, dest), daemon=True)
-    t.start()
-    return True  # retorna True imediatamente — não bloqueia
+    return _send_email_sync(subject, html, dest)
 
 
 def _send_email_sync(subject: str, html: str, dest: str) -> bool:
-    """Envio real em thread background."""
+    """Envio SMTP real."""
     if not SMTP_USER or not SMTP_PASS:
         return False
 
