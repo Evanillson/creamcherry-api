@@ -293,9 +293,9 @@ def tpl_atacado_team(d):
     prods = []
     for p in raw_prods:
         if isinstance(p, dict):
-            prods.append({{'produto': p.get('produto') or p.get('name') or str(p), 'quantidade': int(p.get('quantidade') or p.get('qty') or 0)}})
+            prods.append({'produto': p.get('produto') or p.get('name') or str(p), 'quantidade': int(p.get('quantidade') or p.get('qty') or 0)})
         else:
-            prods.append({{'produto': str(p), 'quantidade': 0}})
+            prods.append({'produto': str(p), 'quantidade': 0})
     rows = ''.join(f"""<tr>
       <td style="padding:12px 16px;border-bottom:1px solid #F9F9F9;color:#3F3F46;font-size:14px">{p['produto']}</td>
       <td style="padding:12px 16px;border-bottom:1px solid #F9F9F9;color:#3F3F46;font-size:14px;text-align:center;font-weight:600">{p['quantidade']} un.</td>
@@ -371,7 +371,7 @@ def tpl_atacado_team(d):
 
 def tpl_atacado_user(d):
     raw_prods2 = d.get('produtos', [])
-    prods2 = [{{'produto': p.get('produto') or str(p), 'quantidade': int(p.get('quantidade') or 0)}} if isinstance(p, dict) else {{'produto': str(p), 'quantidade': 0}} for p in raw_prods2]
+    prods2 = [{'produto': p.get('produto') or str(p), 'quantidade': int(p.get('quantidade') or 0)} if isinstance(p, dict) else {'produto': str(p), 'quantidade': 0} for p in raw_prods2]
     rows = ''.join(f"""<tr>
       <td style="padding:12px 16px;border-bottom:1px solid #F9F9F9;color:#3F3F46;font-size:14px">{p['produto']}</td>
       <td style="padding:12px 16px;border-bottom:1px solid #F9F9F9;color:#3F3F46;font-size:14px;text-align:center">{p['quantidade']} un.</td>
