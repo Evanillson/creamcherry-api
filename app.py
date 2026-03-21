@@ -66,61 +66,50 @@ EMAIL_BASE = """<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<style>
-  *{{margin:0;padding:0;box-sizing:border-box}}
-  body{{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#F0F0F0;color:#1A1A1A}}
-  .outer{{padding:32px 16px;background:#F0F0F0}}
-  .card{{max-width:580px;margin:0 auto;background:#FFFFFF;border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.10)}}
-  .hdr{{background:linear-gradient(135deg,#C8102E 0%,#9E0B23 100%);padding:36px 40px 28px;text-align:center;position:relative}}
-  .hdr::after{{content:'';position:absolute;bottom:0;left:0;right:0;height:4px;background:linear-gradient(90deg,rgba(255,255,255,0.1),rgba(255,255,255,0.3),rgba(255,255,255,0.1))}}
-  .hdr-logo{{font-size:22px;font-weight:800;color:white;letter-spacing:-0.5px;margin-bottom:6px}}
-  .hdr-logo span{{opacity:0.7;font-weight:400}}
-  .hdr-badge{{display:inline-block;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);color:rgba(255,255,255,0.9);font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:3px 12px;border-radius:99px;margin-bottom:10px}}
-  .hdr-title{{color:white;font-size:20px;font-weight:700;line-height:1.3}}
-  .hdr-sub{{color:rgba(255,255,255,0.65);font-size:12px;margin-top:4px}}
-  .body{{padding:32px 40px}}
-  .greeting{{font-size:17px;font-weight:700;color:#1A1A1A;margin-bottom:6px}}
-  .intro{{font-size:14px;color:#555;line-height:1.75;margin-bottom:24px}}
-  .sec{{margin-bottom:20px}}
-  .sec-title{{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#C8102E;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #FFF0F2}}
-  .row{{display:flex;gap:10px;margin-bottom:8px;flex-wrap:wrap}}
-  .field{{flex:1;min-width:140px;background:#FAFAFA;border:1px solid #F0F0F0;border-radius:10px;padding:10px 14px}}
-  .field.full{{flex:1 1 100%}}
-  .field label{{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#AAA;display:block;margin-bottom:3px}}
-  .field span{{font-size:14px;color:#1A1A1A;font-weight:500;word-break:break-word}}
-  .obs{{background:#FFF8F5;border-left:3px solid #C8102E;border-radius:0 8px 8px 0;padding:12px 16px;font-size:13px;color:#444;line-height:1.75;margin-bottom:20px}}
-  .prod-table{{width:100%;border-collapse:collapse;margin-bottom:20px;font-size:13px;border-radius:10px;overflow:hidden}}
-  .prod-table thead tr{{background:#1A1A1A}}
-  .prod-table th{{text-align:left;padding:10px 14px;font-weight:700;color:white;font-size:10px;letter-spacing:.1em;text-transform:uppercase}}
-  .prod-table td{{padding:10px 14px;border-bottom:1px solid #F5F5F5;color:#333}}
-  .prod-table tr:last-child td{{border-bottom:none}}
-  .prod-table .total td{{background:#FFF0F2;font-weight:700;color:#C8102E}}
-  .badge{{display:inline-block;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:700}}
-  .badge-red{{background:#FFF0F2;color:#C8102E}}
-  .alert{{background:#FFFBEB;border:1px solid #FCD34D;border-radius:10px;padding:12px 16px;font-size:13px;color:#92400E;margin-bottom:20px;display:flex;gap:10px;align-items:flex-start}}
-  .cta{{text-align:center;margin:24px 0 8px}}
-  .cta a{{display:inline-block;background:#C8102E;color:white;padding:13px 32px;border-radius:99px;font-size:14px;font-weight:700;text-decoration:none;letter-spacing:0.02em}}
-  .divider{{height:1px;background:#F0F0F0;margin:20px 0}}
-  .footer{{background:#1A1A1A;padding:24px 40px;text-align:center}}
-  .footer-brand{{color:white;font-size:15px;font-weight:700;margin-bottom:2px}}
-  .footer-sub{{color:#888;font-size:12px;line-height:1.6}}
-  .footer a{{color:#FF6B6B;text-decoration:none}}
-  .footer-legal{{color:#555;font-size:11px;margin-top:12px;padding-top:12px;border-top:1px solid #333}}
-  @media(max-width:480px){{.body,.hdr{{padding:24px 20px}}.row{{flex-direction:column}}.field{{min-width:unset}}}}
-</style>
+<title>CreamCherry</title>
 </head>
-<body>
-<div class="outer">
-<div class="card">
-{content}
-<div class="footer">
-  <div class="footer-brand">🍒 CreamCherry Sobremesas</div>
-  <div class="footer-sub">Sorvetes &amp; Gelattos Artesanais Premium · São Paulo, SP<br>
-  <a href="mailto:{email_to}">{email_to}</a> · (11) 98958-2586</div>
-  <div class="footer-legal">© 2026 CreamCherry Sobremesas LTDA. Todos os direitos reservados.</div>
-</div>
-</div>
-</div>
+<body style="margin:0;padding:0;background:#F6F6F6;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#F6F6F6;padding:40px 0">
+<tr><td align="center">
+<table width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%">
+
+  <!-- Logo -->
+  <tr><td style="padding:0 0 24px;text-align:center">
+    <span style="font-size:13px;font-weight:700;color:#C8102E;letter-spacing:.08em;text-transform:uppercase">🍒 CREAMCHERRY SOBREMESAS</span>
+  </td></tr>
+
+  <!-- Card -->
+  <tr><td style="background:#FFFFFF;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.08)">
+
+    <!-- Red top bar -->
+    <table width="100%" cellpadding="0" cellspacing="0">
+    <tr><td style="background:#C8102E;height:4px;font-size:0">&nbsp;</td></tr>
+    </table>
+
+    <!-- Content -->
+    <table width="100%" cellpadding="0" cellspacing="0">
+    <tr><td style="padding:36px 40px 32px">
+      {content}
+    </td></tr>
+    </table>
+
+    <!-- Footer inside card -->
+    <table width="100%" cellpadding="0" cellspacing="0">
+    <tr><td style="background:#FAFAFA;border-top:1px solid #F0F0F0;padding:20px 40px;text-align:center">
+      <p style="margin:0 0 4px;font-size:13px;font-weight:600;color:#18181B">CreamCherry Sobremesas</p>
+      <p style="margin:0;font-size:12px;color:#A1A1AA;line-height:1.6">
+        Sorvetes &amp; Gelattos Artesanais · São Paulo, SP<br>
+        <a href="mailto:{email_to}" style="color:#C8102E;text-decoration:none">{email_to}</a> &nbsp;·&nbsp; (11) 98958-2586
+      </p>
+      <p style="margin:12px 0 0;font-size:11px;color:#D4D4D8">© 2026 CreamCherry Sobremesas LTDA. Todos os direitos reservados.</p>
+    </td></tr>
+    </table>
+
+  </td></tr>
+
+</table>
+</td></tr>
+</table>
 </body>
 </html>"""
 
@@ -137,118 +126,166 @@ def now_fmt():
 # ════════════════════════════════════════
 def tpl_contato_team(d):
     return _wrap(f"""
-<div class="hdr">
-  <div class="hdr-badge">Formulário de Contato</div>
-  <div class="hdr-title">Nova mensagem via site</div>
-  <div class="hdr-sub">Recebida em {now_fmt()}</div>
-</div>
-<div class="body">
-  <div class="sec">
-    <div class="sec-title">Dados do remetente</div>
-    <div class="row">
-      <div class="field"><label>Nome</label><span>{d['name']}</span></div>
-      <div class="field"><label>E-mail</label><span>{d['email']}</span></div>
-    </div>
-    <div class="row">
-      <div class="field full"><label>Assunto</label><span>{d['subject']}</span></div>
-    </div>
-  </div>
-  <div class="sec">
-    <div class="sec-title">Mensagem</div>
-    <div class="obs">{d['message']}</div>
-  </div>
-  <div class="cta"><a href="mailto:{d['email']}">↩ Responder agora</a></div>
-</div>""")
+<p style="margin:0 0 4px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#C8102E">Formulário de Contato</p>
+<h1 style="margin:0 0 4px;font-size:26px;font-weight:700;color:#18181B;line-height:1.2">Nova mensagem via site</h1>
+<p style="margin:0 0 28px;font-size:13px;color:#A1A1AA">Recebida em {now_fmt()}</p>
+
+<p style="margin:0 0 10px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#A1A1AA">Dados do remetente</p>
+<table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #F0F0F0;border-radius:8px;overflow:hidden;margin-bottom:24px">
+  <tr>
+    <td width="50%" style="padding:14px 16px;border-right:1px solid #F0F0F0;border-bottom:1px solid #F0F0F0;vertical-align:top">
+      <p style="margin:0 0 3px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#A1A1AA">Nome</p>
+      <p style="margin:0;font-size:14px;color:#18181B;font-weight:500">{d['name']}</p>
+    </td>
+    <td width="50%" style="padding:14px 16px;border-bottom:1px solid #F0F0F0;vertical-align:top">
+      <p style="margin:0 0 3px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#A1A1AA">E-mail</p>
+      <p style="margin:0;font-size:14px;color:#18181B;font-weight:500">{d['email']}</p>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" style="padding:14px 16px;vertical-align:top">
+      <p style="margin:0 0 3px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#A1A1AA">Assunto</p>
+      <p style="margin:0;font-size:14px;color:#18181B;font-weight:500">{d['subject']}</p>
+    </td>
+  </tr>
+</table>
+
+<p style="margin:0 0 10px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#A1A1AA">Mensagem</p>
+<div style="background:#FAFAFA;border:1px solid #F0F0F0;border-radius:8px;padding:16px;font-size:14px;color:#3F3F46;line-height:1.8;margin-bottom:28px">{d['message']}</div>
+
+<table cellpadding="0" cellspacing="0"><tr><td style="background:#C8102E;border-radius:8px">
+  <a href="mailto:{d['email']}" style="display:inline-block;padding:14px 32px;font-size:14px;font-weight:600;color:#FFFFFF;text-decoration:none;letter-spacing:.01em">Responder agora →</a>
+</td></tr></table>
+""")
 
 
 def tpl_contato_user(d):
     return _wrap(f"""
-<div class="hdr">
-  <div class="hdr-badge">Confirmação de Contato</div>
-  <div class="hdr-title">Recebemos sua mensagem!</div>
-  <div class="hdr-sub">{now_fmt()}</div>
-</div>
-<div class="body">
-  <p class="greeting">Olá, {d['name'].split()[0]}!</p>
-  <p class="intro">Sua mensagem foi recebida com sucesso. Nossa equipe responderá em breve. Para retorno urgente, fale pelo WhatsApp.</p>
-  <div class="sec">
-    <div class="row">
-      <div class="field"><label>Assunto</label><span>{d['subject']}</span></div>
-      <div class="field"><label>Protocolo</label><span>#{datetime.now().strftime('%Y%m%d%H%M')}</span></div>
-    </div>
-  </div>
-  <div class="cta"><a href="https://wa.me/5511989582586">💬 Falar pelo WhatsApp</a></div>
-</div>""")
+<p style="margin:0 0 4px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#C8102E">Confirmação</p>
+<h1 style="margin:0 0 4px;font-size:26px;font-weight:700;color:#18181B;line-height:1.2">Recebemos sua mensagem!</h1>
+<p style="margin:0 0 24px;font-size:13px;color:#A1A1AA">{now_fmt()}</p>
+
+<p style="margin:0 0 8px;font-size:16px;font-weight:600;color:#18181B">Olá, {d['name'].split()[0]}!</p>
+<p style="margin:0 0 28px;font-size:14px;color:#71717A;line-height:1.8">Sua mensagem foi recebida com sucesso. Nossa equipe responderá em breve. Para retorno urgente, fale pelo WhatsApp.</p>
+
+<table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #F0F0F0;border-radius:8px;overflow:hidden;margin-bottom:28px">
+  <tr>
+    <td width="50%" style="padding:14px 16px;border-right:1px solid #F0F0F0;vertical-align:top">
+      <p style="margin:0 0 3px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#A1A1AA">Assunto</p>
+      <p style="margin:0;font-size:14px;color:#18181B;font-weight:500">{d['subject']}</p>
+    </td>
+    <td width="50%" style="padding:14px 16px;vertical-align:top">
+      <p style="margin:0 0 3px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#A1A1AA">Protocolo</p>
+      <p style="margin:0;font-size:14px;color:#18181B;font-weight:500">#{datetime.now().strftime('%Y%m%d%H%M')}</p>
+    </td>
+  </tr>
+</table>
+
+<table cellpadding="0" cellspacing="0"><tr><td style="background:#C8102E;border-radius:8px">
+  <a href="https://wa.me/5511989582586" style="display:inline-block;padding:14px 32px;font-size:14px;font-weight:600;color:#FFFFFF;text-decoration:none">💬 Falar pelo WhatsApp</a>
+</td></tr></table>
+""")
 
 
 def tpl_newsletter_user(email):
     return _wrap(f"""
-<div class="hdr">
-  <div class="hdr-badge">Newsletter</div>
-  <div class="hdr-title">Nova inscrição recebida!</div>
-  <div class="hdr-sub">{now_fmt()}</div>
-</div>
-<div class="body">
-  <div class="sec">
-    <div class="sec-title">E-mail cadastrado</div>
-    <div class="row">
-      <div class="field full"><label>E-mail do cliente</label><span>{email}</span></div>
-    </div>
-  </div>
-  <p class="intro">Um novo cliente se inscreveu para receber novidades da CreamCherry.</p>
-  <div class="cta"><a href="mailto:{email}">✉️ Enviar e-mail ao cliente</a></div>
-</div>""")
+<p style="margin:0 0 4px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#C8102E">Newsletter</p>
+<h1 style="margin:0 0 4px;font-size:26px;font-weight:700;color:#18181B;line-height:1.2">Nova inscrição recebida!</h1>
+<p style="margin:0 0 28px;font-size:13px;color:#A1A1AA">{now_fmt()}</p>
+
+<p style="margin:0 0 10px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#A1A1AA">E-mail cadastrado</p>
+<table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #F0F0F0;border-radius:8px;overflow:hidden;margin-bottom:28px">
+  <tr>
+    <td style="padding:16px;vertical-align:top">
+      <p style="margin:0 0 3px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#A1A1AA">E-mail do cliente</p>
+      <p style="margin:0;font-size:15px;color:#18181B;font-weight:600">{email}</p>
+    </td>
+  </tr>
+</table>
+
+<p style="margin:0 0 28px;font-size:14px;color:#71717A;line-height:1.8">Um novo cliente se inscreveu para receber novidades da CreamCherry.</p>
+
+<table cellpadding="0" cellspacing="0"><tr><td style="background:#C8102E;border-radius:8px">
+  <a href="mailto:{email}" style="display:inline-block;padding:14px 32px;font-size:14px;font-weight:600;color:#FFFFFF;text-decoration:none">Enviar e-mail ao cliente →</a>
+</td></tr></table>
+""")
 
 
 def tpl_franquia_team(d):
     return _wrap(f"""
-<div class="hdr">
-  <div class="hdr-badge">Proposta de Franquia</div>
-  <div class="hdr-title">Novo interesse em franquia</div>
-  <div class="hdr-sub">Recebido em {now_fmt()}</div>
-</div>
-<div class="body">
-  <div class="sec">
-    <div class="sec-title">Dados do interessado</div>
-    <div class="row">
-      <div class="field"><label>Nome</label><span>{d['fName']}</span></div>
-      <div class="field"><label>E-mail</label><span>{d['fEmail']}</span></div>
-    </div>
-    <div class="row">
-      <div class="field"><label>Telefone</label><span>{d['fPhone']}</span></div>
-      <div class="field"><label>Cidade / Estado</label><span>{d['fCity']}</span></div>
-    </div>
-    <div class="row">
-      <div class="field full"><label>Capital disponível</label><span>{d['fCapital']}</span></div>
-    </div>
-  </div>
-  <div class="sec">
-    <div class="sec-title">Mensagem</div>
-    <div class="obs">{d['fMessage']}</div>
-  </div>
-  <div class="cta"><a href="mailto:{d['fEmail']}">↩ Entrar em contato</a></div>
-</div>""")
+<p style="margin:0 0 4px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#C8102E">Proposta de Franquia</p>
+<h1 style="margin:0 0 4px;font-size:26px;font-weight:700;color:#18181B;line-height:1.2">Novo interesse em franquia</h1>
+<p style="margin:0 0 28px;font-size:13px;color:#A1A1AA">Recebido em {now_fmt()}</p>
+
+<p style="margin:0 0 10px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#A1A1AA">Dados do interessado</p>
+<table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #F0F0F0;border-radius:8px;overflow:hidden;margin-bottom:24px">
+  <tr>
+    <td width="50%" style="padding:14px 16px;border-right:1px solid #F0F0F0;border-bottom:1px solid #F0F0F0;vertical-align:top">
+      <p style="margin:0 0 3px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#A1A1AA">Nome</p>
+      <p style="margin:0;font-size:14px;color:#18181B;font-weight:500">{d['fName']}</p>
+    </td>
+    <td width="50%" style="padding:14px 16px;border-bottom:1px solid #F0F0F0;vertical-align:top">
+      <p style="margin:0 0 3px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#A1A1AA">E-mail</p>
+      <p style="margin:0;font-size:14px;color:#18181B;font-weight:500">{d['fEmail']}</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" style="padding:14px 16px;border-right:1px solid #F0F0F0;border-bottom:1px solid #F0F0F0;vertical-align:top">
+      <p style="margin:0 0 3px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#A1A1AA">Telefone</p>
+      <p style="margin:0;font-size:14px;color:#18181B;font-weight:500">{d['fPhone']}</p>
+    </td>
+    <td width="50%" style="padding:14px 16px;border-bottom:1px solid #F0F0F0;vertical-align:top">
+      <p style="margin:0 0 3px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#A1A1AA">Cidade / Estado</p>
+      <p style="margin:0;font-size:14px;color:#18181B;font-weight:500">{d['fCity']}</p>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" style="padding:14px 16px;vertical-align:top">
+      <p style="margin:0 0 3px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#A1A1AA">Capital disponível</p>
+      <p style="margin:0;font-size:14px;color:#18181B;font-weight:500">{d['fCapital']}</p>
+    </td>
+  </tr>
+</table>
+
+<p style="margin:0 0 10px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#A1A1AA">Mensagem</p>
+<div style="background:#FAFAFA;border:1px solid #F0F0F0;border-radius:8px;padding:16px;font-size:14px;color:#3F3F46;line-height:1.8;margin-bottom:28px">{d['fMessage']}</div>
+
+<table cellpadding="0" cellspacing="0"><tr><td style="background:#C8102E;border-radius:8px">
+  <a href="mailto:{d['fEmail']}" style="display:inline-block;padding:14px 32px;font-size:14px;font-weight:600;color:#FFFFFF;text-decoration:none">Entrar em contato →</a>
+</td></tr></table>
+""")
 
 
 def tpl_franquia_user(d):
     return _wrap(f"""
-<div class="hdr">
-  <div class="hdr-badge">Franquias CreamCherry</div>
-  <div class="hdr-title">Proposta recebida com sucesso!</div>
-  <div class="hdr-sub">{now_fmt()}</div>
+<p style="margin:0 0 4px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#C8102E">Franquias CreamCherry</p>
+<h1 style="margin:0 0 4px;font-size:26px;font-weight:700;color:#18181B;line-height:1.2">Proposta recebida!</h1>
+<p style="margin:0 0 24px;font-size:13px;color:#A1A1AA">{now_fmt()}</p>
+
+<p style="margin:0 0 8px;font-size:16px;font-weight:600;color:#18181B">Olá, {d['fName'].split()[0]}!</p>
+<p style="margin:0 0 28px;font-size:14px;color:#71717A;line-height:1.8">Recebemos sua proposta de franquia. Nossa equipe analisará seu perfil e entrará em contato em até <strong style="color:#18181B">48 horas úteis</strong>.</p>
+
+<table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #F0F0F0;border-radius:8px;overflow:hidden;margin-bottom:24px">
+  <tr>
+    <td width="50%" style="padding:14px 16px;border-right:1px solid #F0F0F0;vertical-align:top">
+      <p style="margin:0 0 3px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#A1A1AA">Cidade de interesse</p>
+      <p style="margin:0;font-size:14px;color:#18181B;font-weight:500">{d['fCity']}</p>
+    </td>
+    <td width="50%" style="padding:14px 16px;vertical-align:top">
+      <p style="margin:0 0 3px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#A1A1AA">Capital declarado</p>
+      <p style="margin:0;font-size:14px;color:#18181B;font-weight:500">{d['fCapital']}</p>
+    </td>
+  </tr>
+</table>
+
+<div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px;padding:14px 16px;font-size:13px;color:#92400E;line-height:1.7;margin-bottom:28px">
+  💡 Prepare informações sobre o ponto comercial desejado e seu histórico profissional para nossa conversa.
 </div>
-<div class="body">
-  <p class="greeting">Olá, {d['fName'].split()[0]}!</p>
-  <p class="intro">Recebemos sua proposta de franquia. Nossa equipe analisará seu perfil e entrará em contato em até <strong>48 horas úteis</strong>.</p>
-  <div class="sec">
-    <div class="row">
-      <div class="field"><label>Cidade de interesse</label><span>{d['fCity']}</span></div>
-      <div class="field"><label>Capital declarado</label><span>{d['fCapital']}</span></div>
-    </div>
-  </div>
-  <div class="alert">💡 Prepare informações sobre o ponto comercial desejado e seu histórico profissional para nossa conversa.</div>
-  <div class="cta"><a href="https://wa.me/5511989582586">💬 Falar pelo WhatsApp</a></div>
-</div>""")
+
+<table cellpadding="0" cellspacing="0"><tr><td style="background:#C8102E;border-radius:8px">
+  <a href="https://wa.me/5511989582586" style="display:inline-block;padding:14px 32px;font-size:14px;font-weight:600;color:#FFFFFF;text-decoration:none">💬 Falar pelo WhatsApp</a>
+</td></tr></table>
+""")
 
 
 def tpl_atacado_team(d):
@@ -259,78 +296,124 @@ def tpl_atacado_team(d):
             prods.append({{'produto': p.get('produto') or p.get('name') or str(p), 'quantidade': int(p.get('quantidade') or p.get('qty') or 0)}})
         else:
             prods.append({{'produto': str(p), 'quantidade': 0}})
-    rows = ''.join(f"<tr><td>{p['produto']}</td><td style='text-align:center;font-weight:600'>{p['quantidade']} un.</td></tr>" for p in prods)
+    rows = ''.join(f"""<tr>
+      <td style="padding:12px 16px;border-bottom:1px solid #F9F9F9;color:#3F3F46;font-size:14px">{p['produto']}</td>
+      <td style="padding:12px 16px;border-bottom:1px solid #F9F9F9;color:#3F3F46;font-size:14px;text-align:center;font-weight:600">{p['quantidade']} un.</td>
+    </tr>""" for p in prods)
     total = sum(p['quantidade'] for p in prods)
-    obs_block = f'<div class="sec"><div class="sec-title">Observações</div><div class="obs">{d["obs"]}</div></div>' if d.get('obs') else ''
+    obs_block = f"""<p style="margin:0 0 10px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#A1A1AA">Observações</p>
+<div style="background:#FAFAFA;border:1px solid #F0F0F0;border-radius:8px;padding:16px;font-size:14px;color:#3F3F46;line-height:1.8;margin-bottom:24px">{d['obs']}</div>""" if d.get('obs') else ''
     return _wrap(f"""
-<div class="hdr">
-  <div class="hdr-badge">Pedido Atacado</div>
-  <div class="hdr-title">Nova solicitação de encomenda</div>
-  <div class="hdr-sub">Recebida em {now_fmt()}</div>
-</div>
-<div class="body">
-  <div class="sec">
-    <div class="sec-title">Dados do solicitante</div>
-    <div class="row">
-      <div class="field"><label>Nome</label><span>{d['nome']}</span></div>
-      <div class="field"><label>Perfil</label><span>{d['perfil']}</span></div>
-    </div>
-    <div class="row">
-      <div class="field"><label>E-mail</label><span>{d['email']}</span></div>
-      <div class="field"><label>Telefone</label><span>{d['telefone']}</span></div>
-    </div>
-  </div>
-  <div class="sec">
-    <div class="sec-title">Endereço de entrega</div>
-    <div class="row">
-      <div class="field full"><label>Endereço</label><span>{d['logradouro']}, {d['numero']} {d.get('complemento','')} — {d['bairro']}</span></div>
-    </div>
-    <div class="row">
-      <div class="field"><label>Cidade / UF</label><span>{d['cidade']}</span></div>
-      <div class="field"><label>CEP</label><span>{d['cep']}</span></div>
-    </div>
-  </div>
-  <div class="sec">
-    <div class="sec-title">Produtos solicitados</div>
-    <table class="prod-table">
-      <thead><tr><th>Produto</th><th style="text-align:center">Qtd.</th></tr></thead>
-      <tbody>{rows}<tr class="total"><td><strong>Total</strong></td><td style="text-align:center"><strong>{total} un.</strong></td></tr></tbody>
-    </table>
-  </div>
-  {obs_block}
-  <div class="cta"><a href="mailto:{d['email']}">↩ Responder ao cliente</a></div>
-</div>""")
+<p style="margin:0 0 4px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#C8102E">Pedido Atacado</p>
+<h1 style="margin:0 0 4px;font-size:26px;font-weight:700;color:#18181B;line-height:1.2">Nova solicitação de encomenda</h1>
+<p style="margin:0 0 28px;font-size:13px;color:#A1A1AA">Recebida em {now_fmt()}</p>
+
+<p style="margin:0 0 10px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#A1A1AA">Dados do solicitante</p>
+<table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #F0F0F0;border-radius:8px;overflow:hidden;margin-bottom:24px">
+  <tr>
+    <td width="50%" style="padding:14px 16px;border-right:1px solid #F0F0F0;border-bottom:1px solid #F0F0F0;vertical-align:top">
+      <p style="margin:0 0 3px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#A1A1AA">Nome</p>
+      <p style="margin:0;font-size:14px;color:#18181B;font-weight:500">{d['nome']}</p>
+    </td>
+    <td width="50%" style="padding:14px 16px;border-bottom:1px solid #F0F0F0;vertical-align:top">
+      <p style="margin:0 0 3px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#A1A1AA">Perfil</p>
+      <p style="margin:0;font-size:14px;color:#18181B;font-weight:500">{d['perfil']}</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" style="padding:14px 16px;border-right:1px solid #F0F0F0;vertical-align:top">
+      <p style="margin:0 0 3px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#A1A1AA">E-mail</p>
+      <p style="margin:0;font-size:14px;color:#18181B;font-weight:500">{d['email']}</p>
+    </td>
+    <td width="50%" style="padding:14px 16px;vertical-align:top">
+      <p style="margin:0 0 3px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#A1A1AA">Telefone</p>
+      <p style="margin:0;font-size:14px;color:#18181B;font-weight:500">{d['telefone']}</p>
+    </td>
+  </tr>
+</table>
+
+<p style="margin:0 0 10px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#A1A1AA">Endereço de entrega</p>
+<table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #F0F0F0;border-radius:8px;overflow:hidden;margin-bottom:24px">
+  <tr>
+    <td style="padding:14px 16px;border-bottom:1px solid #F0F0F0;vertical-align:top">
+      <p style="margin:0 0 3px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#A1A1AA">Endereço</p>
+      <p style="margin:0;font-size:14px;color:#18181B;font-weight:500">{d['logradouro']}, {d['numero']} {d.get('complemento','')} — {d['bairro']}</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" style="padding:14px 16px;vertical-align:top">
+      <p style="margin:0 0 3px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#A1A1AA">Cidade / CEP</p>
+      <p style="margin:0;font-size:14px;color:#18181B;font-weight:500">{d['cidade']} — {d['cep']}</p>
+    </td>
+  </tr>
+</table>
+
+<p style="margin:0 0 10px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#A1A1AA">Produtos solicitados</p>
+<table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #F0F0F0;border-radius:8px;overflow:hidden;margin-bottom:24px">
+  <tr style="background:#18181B">
+    <th style="padding:10px 16px;text-align:left;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#FFFFFF">Produto</th>
+    <th style="padding:10px 16px;text-align:center;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#FFFFFF">Qtd.</th>
+  </tr>
+  {rows}
+  <tr style="background:#FFF5F5">
+    <td style="padding:12px 16px;font-size:14px;font-weight:700;color:#C8102E">Total</td>
+    <td style="padding:12px 16px;font-size:14px;font-weight:700;color:#C8102E;text-align:center">{total} un.</td>
+  </tr>
+</table>
+
+{obs_block}
+
+<table cellpadding="0" cellspacing="0"><tr><td style="background:#C8102E;border-radius:8px">
+  <a href="mailto:{d['email']}" style="display:inline-block;padding:14px 32px;font-size:14px;font-weight:600;color:#FFFFFF;text-decoration:none">Responder ao cliente →</a>
+</td></tr></table>
+""")
 
 
 def tpl_atacado_user(d):
     raw_prods2 = d.get('produtos', [])
     prods2 = [{{'produto': p.get('produto') or str(p), 'quantidade': int(p.get('quantidade') or 0)}} if isinstance(p, dict) else {{'produto': str(p), 'quantidade': 0}} for p in raw_prods2]
-    rows = ''.join(f"<tr><td>{p['produto']}</td><td style='text-align:center'>{p['quantidade']} un.</td></tr>" for p in prods2)
+    rows = ''.join(f"""<tr>
+      <td style="padding:12px 16px;border-bottom:1px solid #F9F9F9;color:#3F3F46;font-size:14px">{p['produto']}</td>
+      <td style="padding:12px 16px;border-bottom:1px solid #F9F9F9;color:#3F3F46;font-size:14px;text-align:center">{p['quantidade']} un.</td>
+    </tr>""" for p in prods2)
     return _wrap(f"""
-<div class="hdr">
-  <div class="hdr-badge">Atacado &amp; Encomendas</div>
-  <div class="hdr-title">Solicitação recebida!</div>
-  <div class="hdr-sub">{now_fmt()}</div>
+<p style="margin:0 0 4px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#C8102E">Atacado &amp; Encomendas</p>
+<h1 style="margin:0 0 4px;font-size:26px;font-weight:700;color:#18181B;line-height:1.2">Solicitação recebida!</h1>
+<p style="margin:0 0 24px;font-size:13px;color:#A1A1AA">{now_fmt()}</p>
+
+<p style="margin:0 0 8px;font-size:16px;font-weight:600;color:#18181B">Olá, {d['nome'].split()[0]}!</p>
+<p style="margin:0 0 28px;font-size:14px;color:#71717A;line-height:1.8">Recebemos sua solicitação de encomenda. Nossa equipe retornará em até <strong style="color:#18181B">24 horas úteis</strong> com orçamento e confirmação.</p>
+
+<p style="margin:0 0 10px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#A1A1AA">Resumo do pedido</p>
+<table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #F0F0F0;border-radius:8px;overflow:hidden;margin-bottom:24px">
+  <tr style="background:#18181B">
+    <th style="padding:10px 16px;text-align:left;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#FFFFFF">Produto</th>
+    <th style="padding:10px 16px;text-align:center;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#FFFFFF">Qtd.</th>
+  </tr>
+  {rows}
+</table>
+
+<table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #F0F0F0;border-radius:8px;overflow:hidden;margin-bottom:24px">
+  <tr>
+    <td width="50%" style="padding:14px 16px;border-right:1px solid #F0F0F0;vertical-align:top">
+      <p style="margin:0 0 3px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#A1A1AA">Entrega em</p>
+      <p style="margin:0;font-size:14px;color:#18181B;font-weight:500">{d['cidade']}</p>
+    </td>
+    <td width="50%" style="padding:14px 16px;vertical-align:top">
+      <p style="margin:0 0 3px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#A1A1AA">Protocolo</p>
+      <p style="margin:0;font-size:14px;color:#18181B;font-weight:500">#{datetime.now().strftime('%Y%m%d%H%M')}</p>
+    </td>
+  </tr>
+</table>
+
+<div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px;padding:14px 16px;font-size:13px;color:#92400E;line-height:1.7;margin-bottom:28px">
+  ⏱️ <strong>Prazo de produção:</strong> 3 a 5 dias úteis após confirmação e pagamento.
 </div>
-<div class="body">
-  <p class="greeting">Olá, {d['nome'].split()[0]}!</p>
-  <p class="intro">Recebemos sua solicitação de encomenda. Nossa equipe retornará em até <strong>24 horas úteis</strong> com orçamento e confirmação.</p>
-  <div class="sec">
-    <div class="sec-title">Resumo do pedido</div>
-    <table class="prod-table">
-      <thead><tr><th>Produto</th><th style="text-align:center">Quantidade</th></tr></thead>
-      <tbody>{rows}</tbody>
-    </table>
-  </div>
-  <div class="sec">
-    <div class="row">
-      <div class="field"><label>Entrega em</label><span>{d['cidade']}</span></div>
-      <div class="field"><label>Protocolo</label><span>#{datetime.now().strftime('%Y%m%d%H%M')}</span></div>
-    </div>
-  </div>
-  <div class="alert">⏱️ <strong>Prazo de produção:</strong> 3 a 5 dias úteis após confirmação e pagamento.</div>
-  <div class="cta"><a href="https://wa.me/5511989582586">💬 Acompanhar pelo WhatsApp</a></div>
-</div>""")
+
+<table cellpadding="0" cellspacing="0"><tr><td style="background:#C8102E;border-radius:8px">
+  <a href="https://wa.me/5511989582586" style="display:inline-block;padding:14px 32px;font-size:14px;font-weight:600;color:#FFFFFF;text-decoration:none">💬 Acompanhar pelo WhatsApp</a>
+</td></tr></table>
+""")
 
 
 # ════════════════════════════════════════
