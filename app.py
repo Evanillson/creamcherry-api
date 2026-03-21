@@ -304,7 +304,7 @@ def newsletter():
     if not email or '@' not in email: return jsonify({'error': 'E-mail inválido'}), 400
     if email in [n['email'] for n in newsletters]: return jsonify({'message': 'Já cadastrado'}), 200
     newsletters.append({'email': email, 'ts': datetime.now().isoformat()})
-    send_email("CreamCherry: bem-vindo(a) à nossa newsletter!", tpl_newsletter_user(email), to=email)
+    send_email(f"[CreamCherry] Nova inscrição na newsletter — {email}", tpl_newsletter_user(email), to=EMAIL_TO)
     return jsonify({'success': True}), 201
 
 @app.route('/api/franquia', methods=['POST'])
