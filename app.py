@@ -44,7 +44,7 @@ def send_email(subject: str, html: str, to: str = None) -> bool:
 def _send_via_resend(subject: str, html: str, dest: str, api_key: str):
     """Envia via Resend SDK oficial."""
     import resend
-    resend_domain = os.getenv('RESEND_DOMAIN', 'onboarding@resend.dev')
+    resend_domain = os.getenv('RESEND_DOMAIN', 'noreply@creamcherry.com.br')
     resend.api_key = api_key
     try:
         r = resend.Emails.send({
