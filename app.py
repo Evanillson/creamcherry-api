@@ -30,13 +30,13 @@ contacts, newsletters, franquias_list, atacados = [], [], [], []
 #   ENVIO VIA RESEND API
 # ════════════════════════════════════════
 def send_email(subject: str, html: str, to: str = None) -> bool:
-    """Dispara e-mail via Resend API (HTTPS) em background thread."""
+    """Envia e-mail via Resend API de forma síncrona."""
     dest = to or EMAIL_TO
     resend_key = os.getenv('RESEND_API_KEY', '')
     if not resend_key:
         print(f"[DEV] RESEND_API_KEY não configurada. E-mail não enviado: {subject}")
         return True
-    _email_pool.submit(_send_via_resend, subject, html, dest, resend_key)
+    _send_via_resend(subject, html, dest, resend_key)
     return True
 
 
