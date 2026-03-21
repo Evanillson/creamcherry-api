@@ -22,7 +22,7 @@ ATACADO_EMAIL  = os.getenv('ATACADO_EMAIL', EMAIL_TO)
 # Remetente: usa domínio verificado ou fallback do Resend
 EMAIL_FROM = 'CreamCherry Sobremesas <onboarding@resend.dev>'
 
-_pool = ThreadPoolExecutor(max_workers=4)
+_email_pool = ThreadPoolExecutor(max_workers=4)
 contacts, newsletters, franquias_list, atacados = [], [], [], []
 
 
