@@ -76,6 +76,68 @@ def _send_via_resend(subject: str, html: str, dest: str, api_key: str):
 
 
 
+
+EMAIL_BASE = """<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  *{{margin:0;padding:0;box-sizing:border-box}}
+  body{{font-family:'Segoe UI',Arial,sans-serif;background:#F5F5F5;color:#333}}
+  .wrap{{max-width:600px;margin:0 auto;background:white;border-radius:12px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.08)}}
+  .hdr{{background:#C8102E;padding:32px 40px;text-align:center}}
+  .hdr-badge{{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:white;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 14px;border-radius:99px;margin-bottom:12px}}
+  .hdr-title{{color:white;font-size:22px;font-weight:700;margin:0}}
+  .hdr-sub{{color:rgba(255,255,255,.7);font-size:13px;margin-top:4px}}
+  .body{{padding:36px 40px}}
+  .greeting{{font-size:18px;font-weight:600;color:#222;margin-bottom:8px}}
+  .intro{{font-size:14px;color:#666;line-height:1.7;margin-bottom:24px}}
+  .sec-title{{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#C8102E;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #F0E8E8}}
+  .fields{{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}}
+  .field{{background:#F9F6F4;border-radius:8px;padding:10px 14px}}
+  .field label{{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#999;display:block;margin-bottom:2px}}
+  .field span{{font-size:14px;color:#222;font-weight:500}}
+  .field.full{{grid-column:1/-1}}
+  .obs{{background:#FFF8F5;border:1px solid #F0E0D8;border-radius:8px;padding:12px 16px;font-size:13px;color:#555;line-height:1.7;margin-bottom:20px}}
+  .prod-table{{width:100%;border-collapse:collapse;margin-bottom:20px;font-size:13px}}
+  .prod-table th{{background:#F5F0EC;text-align:left;padding:8px 12px;font-weight:700;color:#666;font-size:10px;letter-spacing:.06em;text-transform:uppercase}}
+  .prod-table td{{padding:8px 12px;border-bottom:1px solid #F0EBE7;color:#333}}
+  .prod-table tr:last-child td{{border-bottom:none}}
+  .total-row td{{background:#FFF0F2;font-weight:700;color:#C8102E}}
+  .alert{{background:#FFF8E1;border:1px solid #FFD740;border-radius:8px;padding:12px 16px;font-size:13px;color:#6D4C00;margin-bottom:20px}}
+  .cta{{text-align:center;margin:24px 0}}
+  .cta a{{display:inline-block;background:#C8102E;color:white;padding:12px 28px;border-radius:99px;font-size:14px;font-weight:700;text-decoration:none}}
+  .footer{{background:#2E2420;padding:24px 40px;text-align:center}}
+  .footer p{{color:rgba(255,255,255,.5);font-size:12px;line-height:1.6}}
+  .footer a{{color:rgba(255,255,255,.7);text-decoration:none}}
+  @media(max-width:480px){{.body,.hdr{{padding:24px 20px}}.fields{{grid-template-columns:1fr}}.footer{{padding:20px}}}}
+</style>
+</head>
+<body>
+<div style="padding:20px 0;background:#F5F5F5">
+<div class="wrap">
+{content}
+<div class="footer">
+  <p style="color:rgba(255,255,255,.85);font-size:15px;font-weight:700;margin-bottom:4px">CreamCherry Sobremesas</p>
+  <p>Sorvetes &amp; Gelattos Artesanais Premium — São Paulo, SP</p>
+  <p style="margin-top:8px"><a href="mailto:{email_to}">{email_to}</a></p>
+  <hr style="border:none;border-top:1px solid rgba(255,255,255,.1);margin:14px 0">
+  <p style="font-size:11px">© 2026 CreamCherry Sobremesas LTDA. Todos os direitos reservados.</p>
+</div>
+</div>
+</div>
+</body>
+</html>"""
+
+
+def _wrap(content_html: str) -> str:
+    return EMAIL_BASE.replace('{content}', content_html).replace('{email_to}', EMAIL_TO)
+
+
+def now_fmt():
+    return datetime.now().strftime('%d/%m/%Y às %H:%M')
+
 # ════════════════════════════════════════
 #   TEMPLATES
 # ════════════════════════════════════════
