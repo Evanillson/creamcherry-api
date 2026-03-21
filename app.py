@@ -5,7 +5,7 @@ Envio de e-mail via Resend API (HTTP — funciona no Render free tier)
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from dotenv import load_dotenv
-import os, requests, threading
+import os, threading
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
 
