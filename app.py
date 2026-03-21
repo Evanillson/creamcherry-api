@@ -5,7 +5,8 @@ Envio de e-mail via Resend API (HTTP — funciona no Render free tier)
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from dotenv import load_dotenv
-import os, threading
+import os, threading, json
+import urllib.request, urllib.error
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
 
@@ -46,7 +47,7 @@ def _send_via_resend(subject: str, html: str, dest: str, api_key: str):
     resend_domain = os.getenv('RESEND_DOMAIN', 'onboarding@resend.dev')
     from_addr = f"CreamCherry Sobremesas <{resend_domain}>"
 
-    payload = _json.dumps({
+    payload = json.dumps({
         "from":    from_addr,
         "to":      [dest],
         "subject": subject,
@@ -66,7 +67,7 @@ def _send_via_resend(subject: str, html: str, dest: str, api_key: str):
 
     try:
         with urllib.request.urlopen(req, timeout=30) as resp:
-            result = _json.loads(resp.read().decode())
+            result = json.loads(resp.read().decode())
             print(f"[RESEND OK] id={result.get('id')} | Para: {dest} | {subject}")
     except urllib.error.HTTPError as e:
         body = e.read().decode()
