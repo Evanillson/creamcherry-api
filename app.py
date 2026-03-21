@@ -42,36 +42,19 @@ def send_email(subject: str, html: str, to: str = None) -> bool:
 
 
 def _send_via_resend(subject: str, html: str, dest: str, api_key: str):
-    """Envia via Resend API — funciona no Render free tier (sem bloqueio SMTP)."""
-    # Remetente: usa domínio verificado ou onboarding@resend.dev para testes
+    """Envia via Resend SDK oficial."""
+    import resend
     resend_domain = os.getenv('RESEND_DOMAIN', 'onboarding@resend.dev')
-    from_addr = f"CreamCherry Sobremesas <{resend_domain}>"
-
-    payload = json.dumps({
-        "from":    from_addr,
-        "to":      [dest],
-        "subject": subject,
-        "html":    html,
-        "reply_to": EMAIL_TO,
-    }).encode('utf-8')
-
-    req = urllib.request.Request(
-        'https://api.resend.com/emails',
-        data=payload,
-        headers={
-            'Authorization': f'Bearer {api_key}',
-            'Content-Type':  'application/json',
-        },
-        method='POST'
-    )
-
+    resend.api_key = api_key
     try:
-        with urllib.request.urlopen(req, timeout=30) as resp:
-            result = json.loads(resp.read().decode())
-            print(f"[RESEND OK] id={result.get('id')} | Para: {dest} | {subject}")
-    except urllib.error.HTTPError as e:
-        body = e.read().decode()
-        print(f"[RESEND ERRO HTTP {e.code}] {body}")
+        r = resend.Emails.send({
+            "from":     f"CreamCherry Sobremesas <{resend_domain}>",
+            "to":       [dest],
+            "subject":  subject,
+            "html":     html,
+            "reply_to": EMAIL_TO,
+        })
+        print(f"[RESEND OK] id={r.get('id')} | Para: {dest} | {subject}")
     except Exception as e:
         print(f"[RESEND ERRO] {type(e).__name__}: {e}")
 
